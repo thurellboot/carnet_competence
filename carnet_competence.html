@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carnet de Compétences – Akaffou Thurell SEKA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+      --blue-mid: #bfdbfe;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --surface: #f8fafc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 0.95rem;
+      color: var(--blue); letter-spacing: 0.3px;
+    }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      transition: color .15s;
+    }
+    nav a:hover { color: var(--blue); }
+
+    /* HERO */
+    .hero {
+      padding: 80px 48px 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero-sub {
+      color: var(--muted); font-size: 1rem;
+      margin-bottom: 24px;
+    }
+    .hero-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      padding: 5px 13px; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 500;
+      background: var(--blue-light);
+      color: var(--blue);
+      border: 1px solid var(--blue-mid);
+    }
+
+    /* LAYOUT */
+    .page { max-width: 1000px; margin: 0 auto; padding: 0 48px; }
+
+    /* SECTION */
+    .section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--text); margin-bottom: 36px;
+      line-height: 1.3;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+
+    /* ORIENTATION */
+    .orientation-text {
+      font-size: 1rem; line-height: 1.9;
+      color: var(--text); margin-bottom: 24px;
+    }
+    .orientation-text strong { color: var(--blue); font-weight: 600; }
+    .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    .mini-card {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      border-radius: 10px; padding: 20px 22px;
+    }
+    .mini-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+    .mini-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+    /* FORMATION TABLE */
+    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    thead th {
+      background: var(--blue); color: #fff;
+      padding: 12px 18px; text-align: left;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    tbody tr:nth-child(even) { background: var(--surface); }
+    tbody td { padding: 14px 18px; vertical-align: top; border-bottom: 1px solid var(--border); }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody td:first-child { font-weight: 600; color: var(--text); }
+    tbody td:nth-child(2) { color: var(--muted); font-size: 0.83rem; white-space: nowrap; }
+    .tag {
+      display: inline-block; padding: 2px 9px; border-radius: 999px;
+      font-size: 0.74rem; font-weight: 600; margin: 2px 2px 2px 0;
+    }
+    .tag-ok { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .tag-miss { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+    /* VALEURS */
+    .valeurs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 28px; }
+    .valeur-card {
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 22px 20px;
+      background: var(--bg);
+      border-top: 3px solid var(--blue);
+    }
+    .valeur-card.anti { border-top-color: #ef4444; }
+    .valeur-card h3 { font-size: 0.98rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+    .valeur-card.anti h3 { color: #ef4444; }
+    .valeur-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
+    .sub-label {
+      font-size: 0.8rem; font-weight: 700; color: #ef4444;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* PROJET PRO */
+    .projet-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+    .projet-card h3 { font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+    .projet-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.85; }
+    .projet-card strong { color: var(--blue); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .skill-tag {
+      padding: 4px 11px; border-radius: 999px;
+      font-size: 0.76rem; font-weight: 600;
+      background: var(--blue-light); color: var(--blue);
+      border: 1px solid var(--blue-mid);
+    }
+    .cinq-ans {
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      border-radius: 10px; padding: 28px;
+    }
+    .cinq-ans h3 {
+      font-size: 0.8rem; font-weight: 700; color: var(--blue);
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .cinq-ans p { font-size: 0.91rem; color: #334155; line-height: 1.85; }
+
+    /* LEP */
+    .lep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .lep-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .lep-date { font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; }
+    .lep-card ul { list-style: none; }
+    .lep-card ul li {
+      padding: 7px 0; border-bottom: 1px solid var(--border);
+      color: var(--muted); font-size: 0.88rem;
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .lep-card ul li:last-child { border-bottom: none; }
+    .lep-card ul li::before { content: "→"; color: var(--blue); flex-shrink: 0; }
+    .lep-learnt {
+      margin-top: 14px; padding: 13px 16px;
+      background: var(--blue-light); border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.87rem; color: #334155;
+      font-style: italic; line-height: 1.75;
+    }
+
+    /* COMPÉTENCES */
+    .comp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .comp-cat h3 {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+    }
+    .comp-cat ul { list-style: none; }
+    .comp-cat ul li {
+      padding: 7px 0; border-bottom: 1px solid var(--border);
+      font-size: 0.88rem; color: var(--muted);
+      display: flex; gap: 8px; align-items: center;
+    }
+    .comp-cat ul li::before { content: "▸"; color: var(--blue); font-size: 0.7rem; flex-shrink: 0; }
+    .comp-cat ul li:last-child { border-bottom: none; }
+
+    /* FOOTER */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.86rem; color: var(--muted);
+    }
+    footer a { color: var(--blue); text-decoration: none; font-weight: 600; }
+
+    /* RESPONSIVE */
+    @media (max-width: 760px) {
+      nav ul { display: none; }
+      .hero, .page { padding-left: 24px; padding-right: 24px; }
+      .two-cols, .valeurs-grid, .projet-grid, .lep-grid, .comp-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">Akaffou Thurell SEKA</span>
+    <ul>
+      <li><a href="#orientation">Orientation</a></li>
+      <li><a href="#formation">Formation</a></li>
+      <li><a href="#valeurs">Valeurs</a></li>
+      <li><a href="#projet">Projet pro</a></li>
+      <li><a href="#lep">LEP</a></li>
+      <li><a href="#competences">Compétences</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div style="max-width:1000px; margin:0 auto;">
+      <span class="hero-tag">Carnet de compétences · ING4 S8 · 2025–26</span>
+      <h1>Akaffou Thurell<br><span>SEKA</span></h1>
+      <p class="hero-sub">Étudiant ingénieur · Informatique & Réseaux · Cybersécurité · ESAIP, Angers</p>
+      <div class="hero-pills">
+        <span class="pill">Cybersécurité</span>
+        <span class="pill">Réseaux</span>
+        <span class="pill">Pentest</span>
+        <span class="pill">Angers, France</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- 01 ORIENTATION -->
+    <div class="section" id="orientation">
+      <div class="section-label">01 — Choix d'orientation</div>
+      <div class="section-title">Pourquoi l'informatique & la cybersécurité ?</div>
+      <p class="orientation-text">
+        Tout a commencé avec <strong>l'ordinateur familial</strong> — depuis petit, j'ai toujours voulu comprendre comment les systèmes fonctionnent en profondeur. L'informatique n'était pas un choix de raison, c'était une passion naturelle.
+        <br><br>
+        La cybersécurité m'a accroché parce qu'elle réunit <strong>technique, réflexion et analyse</strong>, avec un enjeu concret : protéger des données, des infrastructures, des personnes. Ce qui me plaît aussi, c'est le <strong>challenge permanent</strong> : le domaine évolue sans cesse, ce qui oblige à apprendre constamment — exactement le type d'environnement dans lequel je m'épanouis.
+      </p>
+      <div class="two-cols">
+        <div class="mini-card">
+          <h4>Ce qui m'attire techniquement</h4>
+          <p>Comprendre les systèmes en profondeur, analyser des failles, construire des défenses. J'aime la logique derrière chaque problème de sécurité.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Ce qui m'anime au quotidien</h4>
+          <p>Le côté évolutif du domaine : pas de routine, de nouveaux défis à chaque étape. Apprendre est une nécessité autant qu'un plaisir.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 FORMATION -->
+    <div class="section" id="formation">
+      <div class="section-label">02 — Formation</div>
+      <div class="section-title">Mon parcours par rapport à mon projet professionnel</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Formation</th>
+              <th>Lieu · Période</th>
+              <th>Ce que j'ai apprécié</th>
+              <th>Ce qui m'a manqué</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cycle Ingénieur IR — ESAIP<br><small style="font-weight:400;color:#64748b">Informatique & Réseaux</small></td>
+              <td>Angers<br>2024–2027</td>
+              <td><span class="tag tag-ok">Projets concrets</span><span class="tag tag-ok">Bases réseau</span><span class="tag tag-ok">Approche pratique</span><span class="tag tag-ok">Vie associative</span></td>
+              <td><span class="tag tag-miss">Plus de modules cyber</span><span class="tag tag-miss">Labs pentest</span></td>
+            </tr>
+            <tr>
+              <td>Échange ERASMUS<br><small style="font-weight:400;color:#64748b">New Bulgarian University</small></td>
+              <td>Sofia<br>2025</td>
+              <td><span class="tag tag-ok">Ouverture internationale</span><span class="tag tag-ok">Autonomie</span><span class="tag tag-ok">Adaptabilité</span></td>
+              <td><span class="tag tag-miss">Cours moins techniques</span></td>
+            </tr>
+            <tr>
+              <td>CPGE MPSI<br><small style="font-weight:400;color:#64748b">Institut Emmanuel Dalzon</small></td>
+              <td>Nîmes<br>2022–2024</td>
+              <td><span class="tag tag-ok">Rigueur & méthode</span><span class="tag tag-ok">Travail sous pression</span></td>
+              <td><span class="tag tag-miss">Peu de pratique info</span></td>
+            </tr>
+            <tr>
+              <td>Baccalauréat série D<br><small style="font-weight:400;color:#64748b">Collège Notre Dame d'Afrique</small></td>
+              <td>Abidjan<br>2019–2022</td>
+              <td><span class="tag tag-ok">Bases scientifiques</span><span class="tag tag-ok">Discipline personnelle</span></td>
+              <td><span class="tag tag-miss">Peu d'accès aux outils numériques</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 03 VALEURS -->
+    <div class="section" id="valeurs">
+      <div class="section-label">03 — Valeurs & Anti-valeurs</div>
+      <div class="section-title">Ce qui me définit, ce que je refuse</div>
+
+      <div class="valeurs-grid">
+        <div class="valeur-card">
+          <h3>Curiosité</h3>
+          <p>J'aime comprendre, apprendre et aller au fond des sujets. Chaque problème est une occasion de creuser plus loin que la surface.</p>
+        </div>
+        <div class="valeur-card">
+          <h3>Fiabilité</h3>
+          <p>Quand je m'engage dans quelque chose, je vais jusqu'au bout. Les personnes qui comptent sur moi peuvent en être sûres.</p>
+        </div>
+        <div class="valeur-card">
+          <h3>Persévérance</h3>
+          <p>Même quand un problème est compliqué, je cherche jusqu'à trouver la solution. La difficulté ne me décourage pas, elle me motive.</p>
+        </div>
+      </div>
+
+      <div class="sub-label">Ce que je ne supporte pas</div>
+      <div class="valeurs-grid">
+        <div class="valeur-card anti">
+          <h3>Mépris hiérarchique</h3>
+          <p>Le manque de respect envers les autres, ou traiter les gens de haut simplement parce qu'on occupe un poste plus élevé.</p>
+        </div>
+        <div class="valeur-card anti">
+          <h3>Irresponsabilité</h3>
+          <p>Les personnes qui ne prennent jamais leurs responsabilités et trouvent toujours une excuse plutôt que d'assumer leurs erreurs.</p>
+        </div>
+        <div class="valeur-card anti">
+          <h3>Hypocrisie</h3>
+          <p>Les comportements faux, dire une chose et en faire une autre. J'ai besoin de relations et d'environnements authentiques.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 PROJET PRO -->
+    <div class="section" id="projet">
+      <div class="section-label">04 — Projet professionnel</div>
+      <div class="section-title">Où je vais, comment j'y vais</div>
+      <div class="projet-grid">
+        <div class="card projet-card">
+          <h3>Mon projet professionnel</h3>
+          <p>Je souhaite travailler dans la <strong>cybersécurité</strong>, idéalement sur des sujets techniques : sécurité des systèmes, pentest ou analyse d'incidents. Mon objectif est d'être un ingénieur avec une vraie expertise, capable d'intervenir sur des projets concrets avec de réelles responsabilités.
+          <br><br>
+          Je veux évoluer dans un environnement stimulant où la progression est continue — techniquement et humainement.</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Sécurité des systèmes</span>
+            <span class="skill-tag">Pentest</span>
+            <span class="skill-tag">Analyse d'incidents</span>
+            <span class="skill-tag">Réseaux</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Cisco</span>
+          </div>
+        </div>
+        <div class="cinq-ans">
+          <h3>Dans 5 ans</h3>
+          <p>Je me vois ingénieur cybersécurité confirmé, avec une expertise reconnue sur des sujets comme le pentest ou la réponse à incident. Travailler sur des projets à fort impact, continuer à progresser, et être une personne de référence dans mon équipe — pas uniquement un expert isolé.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 LEP -->
+    <div class="section" id="lep">
+      <div class="section-label">05 — LEP · Engagement bénévole</div>
+      <div class="section-title">Ce que j'ai vécu, ce que j'ai appris sur moi</div>
+      <div class="lep-grid">
+        <div class="card lep-card">
+          <h3>Cop1 Angers</h3>
+          <div class="lep-date">Sept. 2024 – Fév. 2025 · Sept. 2025 – en cours</div>
+          <ul>
+            <li>Collecte et distribution de vêtements pour étudiants dans le besoin</li>
+            <li>Soutien logistique sur le terrain et coordination des bénévoles</li>
+            <li>Sensibilisation au sein du campus ESAIP</li>
+          </ul>
+          <div class="lep-learnt">
+            Cette expérience m'a appris l'importance de l'entraide concrète et de l'organisation sur le terrain. Elle m'a montré que je suis capable de m'impliquer durablement sans retour immédiat — juste le sens d'une action utile.
+          </div>
+        </div>
+        <div class="card lep-card">
+          <h3>Bureau des internationaux — ESAIP</h3>
+          <div class="lep-date">Sept. 2024 – Juin 2025 · Vice-président</div>
+          <ul>
+            <li>Organisation d'événements d'accueil pour les étudiants internationaux</li>
+            <li>Accompagnement et suivi des nouveaux arrivants</li>
+            <li>Communication interculturelle et coordination d'équipe</li>
+          </ul>
+          <div class="lep-learnt">
+            Ce rôle m'a développé humainement. Travailler avec des profils très différents culturellement m'a forcé à mieux communiquer et à m'adapter. J'ai appris que l'écoute et l'ouverture d'esprit sont aussi importantes que les compétences techniques.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 COMPÉTENCES -->
+    <div class="section" id="competences">
+      <div class="section-label">06 — Compétences</div>
+      <div class="section-title">Savoirs, savoir-faire & savoir-être</div>
+      <div class="comp-grid">
+        <div class="card comp-cat">
+          <h3>Savoirs techniques</h3>
+          <ul>
+            <li>Python · Java · HTML/CSS</li>
+            <li>Windows & Linux</li>
+            <li>Configuration Cisco / réseaux</li>
+            <li>Bases cybersécurité</li>
+            <li>Modélisation UML</li>
+            <li>Gestion de projet</li>
+            <li>Suite Office</li>
+          </ul>
+        </div>
+        <div class="card comp-cat">
+          <h3>Savoir-faire</h3>
+          <ul>
+            <li>Inventaire & maintenance parc info</li>
+            <li>Configuration réseau (Packet Tracer)</li>
+            <li>Organisation d'événements</li>
+            <li>Coordination bénévole</li>
+            <li>Communication interculturelle</li>
+            <li>Travail en équipe projet</li>
+          </ul>
+        </div>
+        <div class="card comp-cat">
+          <h3>Savoir-être</h3>
+          <ul>
+            <li>Curiosité intellectuelle</li>
+            <li>Fiabilité & engagement</li>
+            <li>Persévérance</li>
+            <li>Adaptabilité culturelle</li>
+            <li>Sens des responsabilités</li>
+            <li>Ouverture d'esprit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Akaffou Thurell SEKA · Carnet de compétences ING4 S8 · ESAIP 2025–26 ·
+    <a href="mailto:akaffounews@gmail.com">akaffounews@gmail.com</a>
+  </footer>
+
+</body>
+</html>
